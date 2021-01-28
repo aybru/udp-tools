@@ -1,0 +1,24 @@
+#!/bin/sh
+set -eo pipefail
+function log() {
+ echo "[$0] $*" >&2
+}
+if [ "${1:0:1}" = '-' ]; then
+ log "Executing $*"
+ set -- udp2raw "$@"
+elif [ "$#" = '0' ]; then
+ for f in /etc/udp2raw/*.conf; do {
+  if [ -f "$f" ]; then
+   log "Running udp2raw $f"
+   udp2raw --conf-file $f > /dev/stdout 2> /dev/stderr
+  else
+   log "Could not run $f"
+  fi
+ }&
+ done
+ unset f
+ while true; do
+  sleep 7d;
+ done;
+fi
+exec "$@"

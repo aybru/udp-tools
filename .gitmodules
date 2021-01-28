@@ -1,0 +1,6 @@
+[submodule "module/udp2raw"]
+	path = module/udp2raw
+	url = git@github.com:wangyu-/udp2raw-tunnel.git
+[submodule "module/UDPspeeder"]
+	path = module/UDPspeeder
+	url = git@github.com:wangyu-/UDPspeeder.git
